@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
 import { PenBox } from "lucide-react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   return (
@@ -22,7 +23,14 @@ const Header = () => {
             <PenBox size={18} /> Create Event
           </Button>
         </Link>
-        <Button variant={"outline"}>Login</Button>
+        <SignedOut>
+          <SignInButton forceRedirectUrl={"/dashboard"}>
+            <Button variant={"outline"}>Login</Button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </nav>
   );
